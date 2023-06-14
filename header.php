@@ -1,7 +1,11 @@
 <?php
     $locations = get_nav_menu_locations();
-    $menu_id = $locations['primary'];
-    $menu_items = wp_get_nav_menu_items($menu_id);
+    if (!empty($locations)) {
+        $menu_id = $locations['primary'];
+        $menu_items = wp_get_nav_menu_items($menu_id);
+    } else {
+        $menu_items = array();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +24,10 @@
       }
     }
   </script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
   <?php wp_head(); ?>
 </head>
 <body class="container-snap overflow-auto bg-slate-800">
